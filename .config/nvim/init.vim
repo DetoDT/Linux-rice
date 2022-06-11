@@ -12,7 +12,7 @@ set hls is
 set signcolumn=yes
 set nocompatible
 filetype plugin indent on
-syntax on
+syntax on 
 
 call plug#begin('~/vim/plugged')
 Plug 'joshdick/onedark.vim' 
@@ -38,9 +38,20 @@ Plug 'preservim/tagbar'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'tc50cal/vim-terminal'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+Plug 'instant-markdown/vim-instant-markdown'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
-colorscheme onedark
+"vimwiki path"
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
+
+" Catpuccin
+let g:catppuccin_flavour = "dusk" " latte, frappe, macchiato, mocha
+colorscheme catppuccin
+
 hi Normal guibg=NONE ctermbg=NONE
 hi NonText ctermbg=none 
 hi LineNr term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE 
@@ -51,7 +62,7 @@ hi LineNr term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=DarkGrey
 autocmd FileType python nnoremap <F9> :w <CR> :!python3 %<CR>
 autocmd FileType c nnoremap <F9> :w <CR> :!gcc % -o %< && ./%< -g<CR>
 "autocmd FileType c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< -s<CR>"
-autocmd filetype cpp nnoremap <F9> :w <CR> :!g++ -o %:r % <CR> :!./%:r < <CR>
+autocmd FileType cpp nnoremap <F9> :w <CR> :!g++ -o %:r % <CR> :!./%:r < <CR>
 
 
 
