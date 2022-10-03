@@ -19,12 +19,12 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-scripts/AutoClose'
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdtree'
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale' 
 Plug 'kana/vim-smartinput'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vimwiki/vimwiki'
-Plug 'mhinz/vim-startify'
-Plug 'szw/vim-maximizer'
+"Plug 'mhinz/vim-startify'
+"Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 Plug 'neoclide/coc.nvim'
 Plug 'junegunn/fzf.vim'
@@ -34,27 +34,26 @@ Plug 'tpope/vim-ragtag'
 Plug 'alvan/vim-closetag'
 Plug 'ap/vim-css-color'
 Plug 'chrisbra/Colorizer'
-Plug 'preservim/tagbar'
+"Plug 'preservim/tagbar'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
-Plug 'tc50cal/vim-terminal'
+" Plug 'tc50cal/vim-terminal'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 Plug 'instant-markdown/vim-instant-markdown'
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'rust-lang/rust.vim'
+Plug 'wsdjeg/vim-assembly'
 call plug#end()
 
 "vimwiki path"
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
 
-" Catpuccin
-let g:catppuccin_flavour = "dusk" " latte, frappe, macchiato, mocha
-colorscheme catppuccin
+"colorscheme"
+colorscheme molokai
 
 hi Normal guibg=NONE ctermbg=NONE
 hi NonText ctermbg=none 
-hi LineNr term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE 
+hi LineNr term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=NONE guibg=NONE 
 
 "map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>"
 
@@ -63,17 +62,18 @@ autocmd FileType python nnoremap <F9> :w <CR> :!python3 %<CR>
 autocmd FileType c nnoremap <F9> :w <CR> :!gcc % -o %< && ./%< -g<CR>
 "autocmd FileType c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< -s<CR>"
 autocmd FileType cpp nnoremap <F9> :w <CR> :!g++ -o %:r % <CR> :!./%:r < <CR>
+autocmd FileType rs nnoremap <F9> :w <CR> :!cargo run<CR>
+autocmd FileType rs nnoremap <F8> :w <CR> :!rustc % && ./%<<CR>
 
-
-
-
+"Moving between multiple sessions mapping"
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k 
 map <C-l> <C-w>l
 
 nmap <C-f> :NERDTreeToggle<CR>
-nmap <C-m> :MaximizerToggle<CR>
+" nmap <C-m> :MaximizerToggle<CR>
+
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
@@ -139,3 +139,7 @@ let g:closetag_close_shortcut = '<leader>>'
 
                        " Use <c-space> to trigger completion.
                        inoremap <silent><expr> <c-space> coc#refresh()
+
+" Enable/Disable autostart for instant-markdown
+let g:instant_markdown_autostart = 0
+nnoremap <F2> :let g:instant_markdown_autostart=1
